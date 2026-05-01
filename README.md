@@ -1,12 +1,12 @@
 🤖 Support Triage Agent
 📌 Overview
 
-The Support Triage Agent is an automated system designed to handle customer support tickets efficiently. It analyzes incoming messages and decides whether:
+The Support Triage Agent is an automated system that reads customer support tickets and decides whether to:
 
-✅ The issue can be handled automatically
-👨‍💻 The issue should be escalated to a human agent
+Answer automatically 🤖
+Escalate to a human 👨‍💻
 
-This helps reduce workload, improve response time, and prioritize critical cases.
+It helps reduce workload and improves response time for critical issues.
 
 🚀 Features
 🔍 Keyword-based classification
@@ -15,23 +15,17 @@ This helps reduce workload, improve response time, and prioritize critical cases
 📊 Logs and output tracking
 💬 Interactive testing mode
 🛠️ How to Run
-Step 1: Open Terminal
+1. Open Terminal
 
-Navigate to the project folder:
+Navigate to your project folder:
 
 cd your-project-folder
-Step 2: Run the Agent
+2. Run the Agent
 python code/agent.py
-Step 3: Output
-
-After execution:
-
-output.csv → Contains processed ticket results
-log.txt → Records agent activity
+3. Output Files
+output.csv → Processed ticket results
+log.txt → Agent activity log
 ⚙️ How It Works
-
-The agent uses simple rule-based logic:
-
 🚨 Escalation Rules
 
 If a ticket contains keywords like:
@@ -39,51 +33,49 @@ If a ticket contains keywords like:
 "stolen"
 "fraud"
 
-➡️ The ticket is sent to a human agent
+➡️ The ticket is sent to a human agent.
 
-🤖 Auto-Response Rules
+🤖 Auto Response
 
-If the ticket is a general question like:
+If the ticket is a normal question:
 
 "How do I take a test?"
 "How to reset password?"
 
-➡️ The agent generates an automatic response
+➡️ The agent responds automatically.
 
 📂 Project Structure
 project-folder/
 │
 ├── code/
-│   ├── agent.py          # Main processing script
-│   ├── interactive.py    # Interactive testing mode
+│   ├── agent.py
+│   ├── interactive.py
 │
-├── output.csv            # Final processed results
-├── log.txt               # Execution logs
-└── README.md             # Project documentation
+├── output.csv
+├── log.txt
+└── README.md
 🧪 Interactive Testing
 
-You can test the agent manually:
+Run:
 
 python code/interactive.py
-Example Inputs:
+
+Example inputs:
+
 My card was stolen
 How do I take a test?
 
-Type:
-
-quit
-
-to exit the program.
+Type quit to exit.
 
 📊 Results
-📥 Total Tickets Processed: 29
-🤖 Automatically Answered: 18
-👨‍💻 Escalated to Humans: 11
+Total Tickets: 29
+Auto Answered: 18
+Escalated: 11
 💡 Future Improvements
-🧠 Add Machine Learning for smarter classification
-🌐 Integrate with real support systems (APIs)
-🗣️ Improve response quality using NLP
-📈 Dashboard for analytics and monitoring
+Add machine learning 🤖
+API integration 🌐
+Better NLP responses 🧠
+Analytics dashboard 📈
 👨‍💻 Author
 
-Developed as a simple AI-based automation project for handling support tickets efficiently.
+Simple AI-based automation project for support ticket handling.

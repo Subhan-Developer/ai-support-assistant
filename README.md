@@ -1,58 +1,89 @@
-\# Support Triage Agent
+🤖 Support Triage Agent
+📌 Overview
 
+The Support Triage Agent is an automated system designed to handle customer support tickets efficiently. It analyzes incoming messages and decides whether:
 
+✅ The issue can be handled automatically
+👨‍💻 The issue should be escalated to a human agent
 
-\## What this project does
+This helps reduce workload, improve response time, and prioritize critical cases.
 
-This is a robot that reads customer support tickets and decides whether to answer automatically or send to a human.
+🚀 Features
+🔍 Keyword-based classification
+⚡ Automatic responses for common queries
+🚨 Escalation of sensitive issues (e.g., fraud, stolen cards)
+📊 Logs and output tracking
+💬 Interactive testing mode
+🛠️ How to Run
+Step 1: Open Terminal
 
+Navigate to the project folder:
 
+cd your-project-folder
+Step 2: Run the Agent
+python code/agent.py
+Step 3: Output
 
-\## How to run it
+After execution:
 
-1\. Open terminal in this folder
+output.csv → Contains processed ticket results
+log.txt → Records agent activity
+⚙️ How It Works
 
-2\. Type: python code/agent.py
+The agent uses simple rule-based logic:
 
-3\. The robot will process all tickets and create output.csv
+🚨 Escalation Rules
 
+If a ticket contains keywords like:
 
+"stolen"
+"fraud"
 
-\## How it works
+➡️ The ticket is sent to a human agent
 
-\- If ticket has words like "stolen" or "fraud" → Send to human
+🤖 Auto-Response Rules
 
-\- If ticket is normal question → Answer automatically
+If the ticket is a general question like:
 
+"How do I take a test?"
+"How to reset password?"
 
+➡️ The agent generates an automatic response
 
-\## Files
+📂 Project Structure
+project-folder/
+│
+├── code/
+│   ├── agent.py          # Main processing script
+│   ├── interactive.py    # Interactive testing mode
+│
+├── output.csv            # Final processed results
+├── log.txt               # Execution logs
+└── README.md             # Project documentation
+🧪 Interactive Testing
 
-\- code/agent.py - Main robot code
+You can test the agent manually:
 
-\- code/interactive.py - Test robot by typing questions
+python code/interactive.py
+Example Inputs:
+My card was stolen
+How do I take a test?
 
-\- output.csv - Robot's answers
+Type:
 
-\- log.txt - Record of what robot did
+quit
 
+to exit the program.
 
+📊 Results
+📥 Total Tickets Processed: 29
+🤖 Automatically Answered: 18
+👨‍💻 Escalated to Humans: 11
+💡 Future Improvements
+🧠 Add Machine Learning for smarter classification
+🌐 Integrate with real support systems (APIs)
+🗣️ Improve response quality using NLP
+📈 Dashboard for analytics and monitoring
+👨‍💻 Author
 
-\## Test it yourself
-
-Type: python code/interactive.py
-
-Then type: "My card was stolen" or "How do I take a test?"
-
-Type "quit" to exit
-
-
-
-\## Results
-
-\- Processed 29 tickets
-
-\- Answered 18 automatically
-
-\- Escalated 11 to humans
-
+Developed as a simple AI-based automation project for handling support tickets efficiently.

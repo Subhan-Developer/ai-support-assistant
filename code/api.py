@@ -17,7 +17,6 @@ def triage():
         issue = data.get('issue', '')
         subject = data.get('subject', '')
         
-        # Create ticket dictionary
         ticket = {'Issue': issue, 'Subject': subject}
         result = agent.process_ticket(ticket)
         
@@ -43,7 +42,8 @@ def home():
         'message': 'Support Triage Agent API',
         'endpoints': {
             '/triage': 'POST - Process a support ticket',
-            '/health': 'GET - Check API status'
+            '/health': 'GET - Check API status',
+            '/web': 'GET - Web interface'
         },
         'example': {
             'method': 'POST',
@@ -54,6 +54,15 @@ def home():
             }
         }
     })
+
+# NEW WEB ROUTE - ADD THIS
+@app.route('/web')
+def web():
+    try:
+        with open('code/web.html', 'r', encoding='utf-8') as f:
+            return f.read()
+    except FileNotFoundError:
+        return "Web page not found. Please make sure web.html exists."
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))

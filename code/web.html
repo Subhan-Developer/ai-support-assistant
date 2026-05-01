@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Support Triage Agent</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            text-align: center;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        .response {
+            background: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .replied {
+            background: #4CAF50;
+        }
+        .escalated {
+            background: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 AI Support Triage Agent</h1>
+        <p>Test my support agent with your question!</p>
+        
+        <h3>Test Questions:</h3>
+        <button onclick="setQuestion('My Visa card was stolen')">💳 Stolen Card</button>
+        <button onclick="setQuestion('How do I delete my HackerRank account?')">🗑️ Delete Account</button>
+        <button onclick="setQuestion('Claude is not responding')">🤖 Claude Issue</button>
+        <button onclick="setQuestion('I want a refund for HackerRank')">💰 Refund</button>
+        
+        <h3>Or type your own:</h3>
+        <textarea id="issue" rows="3" placeholder="Describe your issue..."></textarea>
+        <input type="text" id="subject" placeholder="Subject (optional)">
+        <button onclick="sendRequest()">Send to Agent</button>
+        
+        <div id="response" class="response" style="display:none;"></div>
+    </div>
+
+    <script>
+        function setQuestion(text) {
+            document.getElementById('issue').value = text;
+            document.getElementById('subject').value = text.substring(0, 30);
+        }
+        
+        async function sendRequest() {
+            const issue = document.getElementById('issue').value;
+            const subject = document.getElementById('subject').value;
+            
+            if (!issue) {
+                alert('Please describe your issue');
+                return;
+            }
+            
+            const responseDiv = document.getElementById('response');
+            responseDiv.style.display = 'block';
+            responseDiv.innerHTML = '<h3>🔄 Processing...</h3>';
+            
+            try {
+                const response = await fetch('/triage', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ issue, subject })
+                });
+                
+                const data = await response.json();
+                
+                const statusClass = data.status === 'Replied' ? 'replied' : 'escalated';
+                responseDiv.innerHTML = `
+                    <h3>📊 Agent Decision:</h3>
+                    <p><strong>Company:</strong> ${data.company}</p>
+                    <p><strong>Status:</strong> <span class="status ${statusClass}">${data.status}</span></p>
+                    <p><strong>Product Area:</strong> ${data.product_area}</p>
+                    <p><strong>Request Type:</strong> ${data.request_type}</p>
+                    <h3>💬 Response:</h3>
+                    <p>${data.response}</p>
+                `;
+            } catch (error) {
+                responseDiv.innerHTML = `<h3>❌ Error:</h3><p>${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
